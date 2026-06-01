@@ -1,61 +1,66 @@
-
-☠ MORTAL FRETS — The Fretboard Slayer
-Retro arcade-style guitar fretboard trainer inspired by Mortal Kombat. 8 game modes across Identification and Construction. Global leaderboard powered by Firebase.
+☠ MORTAL KEYS — The Keyboard Slayer
+Retro arcade-style piano keyboard trainer inspired by Mortal Kombat. 8 game modes across Identification and Construction. Global leaderboard powered by Firebase. Sister game to Mortal Frets.
 🎮 Play Now
 
 Game Modes
 All modes: 10 questions per round · Score = errors (fewer = better) · Tiebreaker: time
-Identification — see the question on the fretboard, press the correct button
-ModeWhat you seeWhat you doNote IDDot on fretboard (frets 0–12, all strings)Press the correct note nameInterval IDR (root, red) + interval dot within ±3 frets/±2 stringsPress the correct interval (m2–P8)Chord IDReal voicing — triads on 3 adjacent strings, tetrads as Drop 2 / Drop 3 / Drop 2+4Press the correct chord typeScale IDFull scale in a 5-fret box, R = RootPress the correct scale name
-Construction — target illuminated, build it on the fretboard, press SUBMIT
-ModeWhat you seeWhat you doNote ConstructionTarget note illuminatedPlace ALL occurrences on the fretboardInterval ConstructionR pre-placed (red), interval illuminatedClick anywhere to place the note — auto-checks immediatelyChord ConstructionOne chord tone pre-placed (amber, with role R/3/5/7)Place remaining notes, one per stringScale ConstructionR pre-placed in boxFill all scale positions
+Identification — see the question on the keyboard, press the correct button
+ModeWhat you seeWhat you doNote IDOne key highlighted (2 octaves: Do3–Si4)Press the correct note nameInterval IDR (root, green) + interval key (orange)Press the correct interval (m2–P8)Chord IDClose voicing shown on keyboard (all inversions)Press the correct chord typeScale IDScale notes highlighted in an octave box, R = Root (red)Press the correct scale name
+Construction — target illuminated, click keys to build it, press SUBMIT
+ModeWhat you seeWhat you doNote ConstructionTarget note illuminatedPlace both occurrences (one per octave)Interval ConstructionR pre-placed (green), interval illuminatedClick the nearest note above R — auto-checks immediatelyChord ConstructionOne chord tone pre-placed (amber, with role label)Click remaining tones in any order, no duplicatesScale ConstructionR pre-placed (red) in octave boxFill all scale notes within the box
 
 Rules
 
 Variety: same type appears at most twice per round; exact same question never repeats
 Wrong answer (ID): retry same question, timer keeps running
-Wrong SUBMIT (Construction): wrong dots → red, missing → orange; click to fix, re-SUBMIT
+Wrong SUBMIT (Construction): wrong keys highlighted; fix and re-SUBMIT
 Mercy ☠: activates after 2 wrong answers — hold to reveal solution, release to retry
-Box selection: Chord and Scale modes — fixed 5-fret box or 💀 KHAOS (random each question)
-Notation: toggle A-B-C / Do-Re-Mi at any time
+Octave box: Chord and Scale modes — fixed octave range (Do–Do, Re–Re…) or 💀 KHAOS (random each question)
+Notation: toggle A-B-C / Do-Re-Mi at any time (default: Do-Re-Mi)
 
 
 Active Chords & Scales
-Before starting, deselect chord or scale types you want to skip. Deselected types show ✕ in the lobby and in-game. The leaderboard supports two views: ALL (everyone) or SAME CONFIG (only entries with your same selection).
+Before starting, deselect chord or scale types to skip. Deselected types show ✕ in the lobby and in-game. The leaderboard supports two views: ALL (everyone) or SAME CONFIG (only entries with your same selection).
 
 Scoring
-ErrorsResult0⚡ FLAWLESS VICTORY1–2EXCELLENT FIGHTER3–5SKILLED WARRIOR6–10FIGHT HARDER11–19FINISH HIM20+FATALITY
+ErrorsResult0⚡ FLAWLESS VICTORY1–2EXCELLENT3–5SKILLED6–10FIGHT HARDER11–19FINISH HIM20+FATALITY
 
 Music Theory Coverage
-Notes: all 12 chromatic, frets 0–12, all 6 strings (standard tuning E A D G B e)
+Notes: all 12 chromatic, 2 octaves (Do3–Si4)
 Intervals: m2 · M2 · m3 · M3 · P4 · TT · P5 · m6 · M6 · m7 · M7 · P8
 Chords: Maj · min · Aug · Dim · Maj7 · Dom7 · min7 · ø7 · °7
 Scales: Major · Natural Minor · Harmonic Minor · Melodic Minor · Whole-Half Dim · Half-Whole Dim
-Voicings: triads on all 4 adjacent 3-string groups · Drop 2, Drop 3, Drop 2+4 on all adjacent 4-string groups · all inversions
+Voicings: close voicing, all inversions. Bass note placed in selected octave box; upper notes ascend from bass within keyboard range.
 
 Deploy
 
-Upload mortal_frets.html renamed as index.html
+Upload mortal_keys.html renamed as index.html
 GitHub Settings → Pages → branch main → / (root)
 
 
 Firebase Setup
-Uses Firebase Realtime Database REST API (no SDK).
+Uses same Firebase project as Mortal Frets, separate path mortalkeys/.
 
-console.firebase.google.com → new project → Realtime Database
-Replace FB_CONFIG near the top of the <script> tag
-Set rules:
+Add to Firebase Realtime Database Rules:
 
 json{
   "rules": {
     "leaderboards": {
       "$mode": { ".read": true, ".write": true }
+    },
+    "mortalkeys": {
+      "leaderboards": {
+        "$mode": { ".read": true, ".write": true }
+      }
     }
   }
 }
 
+Replace FB_CONFIG in the <script> tag with your project values (same as Mortal Frets).
+
+
 Tech
-Pure HTML/CSS/JS · Web Audio API · SVG fretboard · Firebase REST API · Press Start 2P + Rajdhani · CRT scanlines
+Pure HTML/CSS/JS · Web Audio API · SVG keyboard (2 octaves) · Firebase REST API · Press Start 2P + Rajdhani · CRT scanlines · iOS silent switch bypass via MediaStream API
 License
 Copyright © 2026 Pierangelo Gobbo. All rights reserved.
 Unauthorized copying, modification or distribution is strictly prohibited.
