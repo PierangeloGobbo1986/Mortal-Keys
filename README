@@ -1,36 +1,33 @@
 ☠ MORTAL KEYS — The Keyboard Slayer
-Retro arcade-style piano keyboard trainer inspired by Mortal Kombat. 8 game modes across Identification and Construction. Global leaderboard powered by Firebase. Sister game to Mortal Frets.
+Retro arcade-style piano keyboard trainer inspired by Mortal Kombat. 8 game modes across Identification and Construction. Sister game to Mortal Frets.
 🎮 Play Now
 
 Game Modes
-All modes: 10 questions per round · Score = errors (fewer = better) · Tiebreaker: time
+All modes: 10 questions per round · Score = errors (fewer = better) · Tiebreaker: time · Default notation: Do-Re-Mi
 Identification — see the question on the keyboard, press the correct button
-ModeWhat you seeWhat you doNote IDOne key highlighted (2 octaves: Do3–Si4)Press the correct note nameInterval IDR (root, green) + interval key (orange)Press the correct interval (m2–P8)Chord IDClose voicing shown on keyboard (all inversions)Press the correct chord typeScale IDScale notes highlighted in an octave box, R = Root (red)Press the correct scale name
-Construction — target illuminated, click keys to build it, press SUBMIT
-ModeWhat you seeWhat you doNote ConstructionTarget note illuminatedPlace both occurrences (one per octave)Interval ConstructionR pre-placed (green), interval illuminatedClick the nearest note above R — auto-checks immediatelyChord ConstructionOne chord tone pre-placed (amber, with role label)Click remaining tones in any order, no duplicatesScale ConstructionR pre-placed (red) in octave boxFill all scale notes within the box
+ModeWhat you seeFeedbackNote IDKey highlighted, always Do4–Si4 (central octave)Wrong button plays that noteInterval IDR (root, green) + interval key (orange)Wrong button plays that intervalChord IDClose voicing, all inversionsWrong button plays root-position arpeggio · Correct: chord name + inversion shown 2sScale IDScale in octave box, R = Root (red), outside darkenedWrong button plays that scale · Correct: root + scale name shown 2s
+Construction — target illuminated, click keys, press SUBMIT
+ModePre-placedWhat you doNote Construction—Place both occurrences (one per octave)Interval ConstructionR (green)Click nearest note above — auto-checksChord ConstructionOne tone (amber, role label)Click remaining tones, no duplicatesScale ConstructionR (red) in octave boxFill all scale notes
 
 Rules
 
 Variety: same type appears at most twice per round; exact same question never repeats
-Wrong answer (ID): retry same question, timer keeps running
-Wrong SUBMIT (Construction): wrong keys highlighted; fix and re-SUBMIT
-Mercy ☠: activates after 2 wrong answers — hold to reveal solution, release to retry
+Mercy ☠: activates after 2 wrong answers — hold to reveal solution on keyboard; correct answer button lights gold. Release to retry.
 Octave box: Chord and Scale modes — fixed octave range (Do–Do, Re–Re…) or 💀 KHAOS (random each question)
-Notation: toggle A-B-C / Do-Re-Mi at any time (default: Do-Re-Mi)
+Active Chords / Scales: deselect types in the lobby to skip them; show ✕ in-game
+Leaderboard: ALL or SAME CONFIG
+Notation: toggle A-B-C / Do-Re-Mi (default: Do-Re-Mi)
 
-
-Active Chords & Scales
-Before starting, deselect chord or scale types to skip. Deselected types show ✕ in the lobby and in-game. The leaderboard supports two views: ALL (everyone) or SAME CONFIG (only entries with your same selection).
 
 Scoring
 ErrorsResult0⚡ FLAWLESS VICTORY1–2EXCELLENT3–5SKILLED6–10FIGHT HARDER11–19FINISH HIM20+FATALITY
 
 Music Theory Coverage
-Notes: all 12 chromatic, 2 octaves (Do3–Si4)
+Notes: all 12 chromatic, central octave Do4–Si4 (MIDI 60–71)
 Intervals: m2 · M2 · m3 · M3 · P4 · TT · P5 · m6 · M6 · m7 · M7 · P8
 Chords: Maj · min · Aug · Dim · Maj7 · Dom7 · min7 · ø7 · °7
 Scales: Major · Natural Minor · Harmonic Minor · Melodic Minor · Whole-Half Dim · Half-Whole Dim
-Voicings: close voicing, all inversions. Bass note placed in selected octave box; upper notes ascend from bass within keyboard range.
+Voicings: close voicing, all inversions, bass note in selected octave box
 
 Deploy
 
@@ -39,10 +36,8 @@ GitHub Settings → Pages → branch main → / (root)
 
 
 Firebase Setup
-Uses same Firebase project as Mortal Frets, separate path mortalkeys/.
-
-Add to Firebase Realtime Database Rules:
-
+Uses same Firebase project as Mortal Frets, path mortalkeys/.
+Add to Realtime Database Rules:
 json{
   "rules": {
     "leaderboards": {
@@ -55,12 +50,10 @@ json{
     }
   }
 }
-
-Replace FB_CONFIG in the <script> tag with your project values (same as Mortal Frets).
-
+Replace FB_CONFIG in <script> with your project values (same as Mortal Frets).
 
 Tech
-Pure HTML/CSS/JS · Web Audio API · SVG keyboard (2 octaves) · Firebase REST API · Press Start 2P + Rajdhani · CRT scanlines · iOS silent switch bypass via MediaStream API
+Pure HTML/CSS/JS · Web Audio API · SVG keyboard (2 octaves) · Firebase REST API · Press Start 2P + Rajdhani · CRT scanlines · iOS silent switch bypass
 License
 Copyright © 2026 Pierangelo Gobbo. All rights reserved.
 Unauthorized copying, modification or distribution is strictly prohibited.
